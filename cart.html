@@ -96,14 +96,11 @@ EINO STORE
 <h1>Your Cart</h1>
 
 
-<div class="item">
+<div id="cartItems"></div>
 
-<span>Classic T-Shirt</span>
-
-<span>399 EGP</span>
-
+<div class="total" id="total">
+Total: 0 EGP
 </div>
-
 
 
 <div class="total">
@@ -129,6 +126,33 @@ Order via WhatsApp
 </div>
 
 
-</body>
+<script>
+
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+let items = document.getElementById("cartItems");
+
+let total = 0;
+
+
+cart.forEach(product => {
+
+items.innerHTML += `
+<div class="item">
+<span>${product.name}</span>
+<span>${product.price} EGP</span>
+</div>
+`;
+
+total += product.price;
+
+});
+
+
+document.getElementById("total").innerHTML =
+"Total: " + total + " EGP";
+
+
+</script></body>
 
 </html>
