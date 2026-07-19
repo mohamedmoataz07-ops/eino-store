@@ -115,11 +115,9 @@ Total: 399 EGP
 
 <a href="https://wa.me/201024847508">
 
-<button>
+<button onclick="orderWhatsApp()">
 Order via WhatsApp
 </button>
-
-</a>
 
 
 
@@ -138,10 +136,15 @@ let total = 0;
 cart.forEach(product => {
 
 items.innerHTML += `
+
 <div class="item">
+
 <span>${product.name}</span>
+
 <span>${product.price} EGP</span>
+
 </div>
+
 `;
 
 total += product.price;
@@ -151,6 +154,39 @@ total += product.price;
 
 document.getElementById("total").innerHTML =
 "Total: " + total + " EGP";
+
+
+
+function orderWhatsApp(){
+
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+let message = "Hello Eino Store 👕%0A%0AMy Order:%0A";
+
+let total = 0;
+
+
+cart.forEach(product => {
+
+message += "- " + product.name + " : " + product.price + " EGP%0A";
+
+total += product.price;
+
+});
+
+
+message += "%0ATotal: " + total + " EGP";
+
+
+let phone = "201024847508";
+
+
+window.open(
+"https://wa.me/" + phone + "?text=" + message
+);
+
+
+}
 
 
 </script></body>
