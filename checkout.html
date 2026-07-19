@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Eino Store - Checkout</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#f8f8f8;
+margin:0;
+}
+
+header{
+background:#111;
+color:white;
+padding:20px;
+text-align:center;
+}
+
+.logo{
+font-size:32px;
+font-weight:bold;
+letter-spacing:3px;
+}
+
+.checkout{
+
+background:white;
+max-width:500px;
+margin:40px auto;
+padding:30px;
+border-radius:10px;
+
+}
+
+input, textarea, select{
+
+width:100%;
+padding:12px;
+margin:10px 0;
+box-sizing:border-box;
+
+}
+
+
+button{
+
+background:#111;
+color:white;
+padding:15px;
+width:100%;
+border:0;
+cursor:pointer;
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+<div class="logo">
+EINO STORE
+</div>
+
+</header>
+
+
+
+<div class="checkout">
+
+
+<h1>Checkout</h1>
+
+
+<input id="name" placeholder="Full Name">
+
+
+<input id="phone" placeholder="Phone Number">
+
+
+<textarea id="address" placeholder="Address"></textarea>
+
+
+
+<h3>Size</h3>
+
+<select id="size">
+
+<option>Select Size</option>
+<option>S</option>
+<option>M</option>
+<option>L</option>
+<option>XL</option>
+
+</select>
+
+
+
+<h3>Payment Method</h3>
+
+<select id="payment">
+
+<option>Cash on Delivery</option>
+
+<option>Visa / Mastercard</option>
+
+<option>Vodafone Cash</option>
+
+<option>InstaPay</option>
+
+</select>
+
+
+
+<textarea id="notes" placeholder="Notes"></textarea>
+
+
+
+<button onclick="sendOrder()">
+
+Complete Order
+
+</button>
+
+
+
+</div>
+
+
+
+
+<script>
+
+function sendOrder(){
+
+
+let name = document.getElementById("name").value;
+
+let phone = document.getElementById("phone").value;
+
+let address = document.getElementById("address").value;
+
+let size = document.getElementById("size").value;
+
+let payment = document.getElementById("payment").value;
+
+let notes = document.getElementById("notes").value;
+
+
+
+let message =
+
+"New Order - Eino Store%0A%0A"+
+
+"Name: "+name+"%0A"+
+
+"Phone: "+phone+"%0A"+
+
+"Address: "+address+"%0A"+
+
+"Size: "+size+"%0A"+
+
+"Payment: "+payment+"%0A"+
+
+"Notes: "+notes;
+
+
+
+let whatsapp="201XXXXXXXXX";
+
+
+window.open(
+"https://wa.me/"+whatsapp+"?text="+message
+);
+
+
+}
+
+</script>
+
+
+
+</body>
+
+</html>
