@@ -244,8 +244,7 @@ total += price;
 
 document.getElementById("total").innerHTML =
 
-"Total: " + total + " EGP";
-
+total += price * (product.quantity || 1);
 
 
 
