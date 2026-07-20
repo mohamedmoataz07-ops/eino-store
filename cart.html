@@ -137,11 +137,10 @@ let items = document.getElementById("cartItems");
 let total = 0;
 
 
-cart.forEach(product => {
+cart.forEach((product, index) => {
 
 
 let price = parseInt(product.price);
-
 
 items.innerHTML += `
 
@@ -153,26 +152,40 @@ items.innerHTML += `
 
 <br>
 
-Size: ${product.size || "Not selected"}
+Size: ${product.size}
 
 <br>
 
-Color: ${product.color || "Not selected"}
+Color: ${product.color}
+
+<br><br>
+
+<button onclick="decreaseQuantity(${index})">-</button>
+
+<span style="margin:0 10px;">
+${product.quantity || 1}
+</span>
+
+<button onclick="increaseQuantity(${index})">+</button>
+
+<br><br>
+
+<button onclick="removeItem(${index})">
+Remove
+</button>
 
 </div>
 
 
 <div>
 
-${price} EGP
+${price * (product.quantity || 1)} EGP
 
 </div>
-
 
 </div>
 
 `;
-
 
 total += price;
 
