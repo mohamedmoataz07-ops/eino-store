@@ -120,12 +120,16 @@ let product = {
 
 name: "Classic T-Shirt",
 
-price: "399",
+price: 399,
+
+image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab",
 
 size: document.getElementById("size").value,
 
 color: document.getElementById("color").value,
+
 quantity: 1
+
 };
 
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
