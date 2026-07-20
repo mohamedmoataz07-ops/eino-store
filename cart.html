@@ -139,54 +139,102 @@ let total = 0;
 
 cart.forEach(product => {
 
+
+let price = parseInt(product.price);
+
+
 items.innerHTML += `
 
 <div class="item">
 
-<span>${product.name}</span>
+<div>
 
-<span>${product.price} EGP</span>
+<b>${product.name}</b>
+
+<br>
+
+Size: ${product.size || "Not selected"}
+
+<br>
+
+Color: ${product.color || "Not selected"}
+
+</div>
+
+
+<div>
+
+${price} EGP
+
+</div>
+
 
 </div>
 
 `;
 
-total += product.price;
+
+total += price;
+
 
 });
 
 
+
 document.getElementById("total").innerHTML =
+
 "Total: " + total + " EGP";
+
 
 
 
 function orderWhatsApp(){
 
+
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
+
 let message = "Hello Eino Store 👕%0A%0AMy Order:%0A";
+
 
 let total = 0;
 
 
+
 cart.forEach(product => {
 
-message += "- " + product.name + " : " + product.price + " EGP%0A";
 
-total += product.price;
+let price = parseInt(product.price);
+
+
+message +=
+
+"- " + product.name +
+
+"%0ASize: " + product.size +
+
+"%0AColor: " + product.color +
+
+"%0APrice: " + price + " EGP%0A%0A";
+
+
+total += price;
+
 
 });
 
 
-message += "%0ATotal: " + total + " EGP";
+
+message += "Total: " + total + " EGP";
 
 
 let phone = "201024847508";
 
 
 window.open(
+
 "https://wa.me/" + phone + "?text=" + message
+
 );
 
 
