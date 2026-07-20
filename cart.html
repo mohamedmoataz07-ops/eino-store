@@ -128,7 +128,55 @@ Checkout
 </div>
 
 
-<script>
+function increaseQuantity(index){
+
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+if(!cart[index].quantity){
+cart[index].quantity = 1;
+}
+
+cart[index].quantity++;
+
+localStorage.setItem("cart", JSON.stringify(cart));
+
+location.reload();
+
+}
+
+
+
+function decreaseQuantity(index){
+
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+if(!cart[index].quantity){
+cart[index].quantity = 1;
+}
+
+if(cart[index].quantity > 1){
+cart[index].quantity--;
+}
+
+localStorage.setItem("cart", JSON.stringify(cart));
+
+location.reload();
+
+}
+
+
+
+function removeItem(index){
+
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+cart.splice(index,1);
+
+localStorage.setItem("cart", JSON.stringify(cart));
+
+location.reload();
+
+}<script>
 
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
