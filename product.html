@@ -120,14 +120,15 @@ let product = {
 
 name: "Classic T-Shirt",
 
-price: "399 EGP",
+price: "399",
 
 size: document.getElementById("size").value,
 
-color: document.getElementById("color").value
+color: document.getElementById("color").value,
+
+quantity: Number(document.getElementById("quantity").value)
 
 };
-
 
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
