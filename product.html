@@ -117,19 +117,35 @@ text-align:center;
 function addToCart(){
 
 let product = {
-name: "Classic T-Shirt",
-price: 399
+
+name: document.querySelector(".details h1").innerText,
+
+price: document.querySelector(".price").innerText,
+
+size: document.querySelectorAll("select")[0].value,
+
+color: document.querySelectorAll("select")[1].value
+
 };
+
 
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
+
 cart.push(product);
 
-localStorage.setItem("cart", JSON.stringify(cart));
+
+localStorage.setItem(
+"cart",
+JSON.stringify(cart)
+);
+
 
 alert("Product added to cart");
 
+
 window.location.href="cart.html";
+
 
 }
 
