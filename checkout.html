@@ -152,37 +152,61 @@ let phone = document.getElementById("phone").value;
 
 let address = document.getElementById("address").value;
 
-let size = document.getElementById("size").value;
-
 let payment = document.getElementById("payment").value;
 
 let notes = document.getElementById("notes").value;
 
 
 
-let message =
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-"New Order - Eino Store%0A%0A"+
 
-"Name: "+name+"%0A"+
+let message = "New Order - Eino Store 👕%0A%0A";
 
-"Phone: "+phone+"%0A"+
 
-"Address: "+address+"%0A"+
 
-"Size: "+size+"%0A"+
+cart.forEach(product => {
 
-"Payment: "+payment+"%0A"+
 
-"Notes: "+notes;
+message +=
+
+"Product: " + product.name + "%0A" +
+
+"Price: " + product.price + "%0A" +
+
+"Size: " + product.size + "%0A" +
+
+"Color: " + product.color + "%0A%0";
+
+
+});
+
+
+
+message +=
+
+"Customer Information:%0A%0A" +
+
+"Name: " + name + "%0A" +
+
+"Phone: " + phone + "%0A" +
+
+"Address: " + address + "%0A" +
+
+"Payment: " + payment + "%0A" +
+
+"Notes: " + notes;
 
 
 
 let whatsapp="201XXXXXXXXX";
 
 
+
 window.open(
+
 "https://wa.me/"+whatsapp+"?text="+message
+
 );
 
 
