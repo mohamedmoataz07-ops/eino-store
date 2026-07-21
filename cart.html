@@ -4,40 +4,59 @@
 <head>
 
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Eino Store - Cart</title>
 
+
 <style>
 
 body{
+
 font-family:Arial;
+
 background:#f8f8f8;
+
 margin:0;
+
 }
 
 
 header{
+
 background:#111;
+
 color:white;
+
 padding:20px;
+
 text-align:center;
+
 }
 
 
 .logo{
+
 font-size:32px;
+
 font-weight:bold;
+
 letter-spacing:3px;
+
 }
 
 
 .cart{
 
 background:white;
-max-width:600px;
+
+max-width:700px;
+
 margin:40px auto;
+
 padding:30px;
+
 border-radius:10px;
 
 }
@@ -46,10 +65,40 @@ border-radius:10px;
 .item{
 
 display:flex;
-justify-content:space-between;
+
 align-items:center;
+
+justify-content:space-between;
+
+gap:20px;
+
 padding:20px 0;
+
 border-bottom:1px solid #ddd;
+
+}
+
+
+.product-left{
+
+display:flex;
+
+align-items:center;
+
+gap:20px;
+
+}
+
+
+.product-image{
+
+width:120px;
+
+height:120px;
+
+object-fit:cover;
+
+border-radius:10px;
 
 }
 
@@ -61,13 +110,25 @@ line-height:1.8;
 }
 
 
+.actions{
+
+margin-top:10px;
+
+}
+
+
 .actions button{
 
 background:#111;
+
 color:white;
+
 border:0;
+
 padding:8px 15px;
+
 cursor:pointer;
+
 margin:3px;
 
 }
@@ -83,7 +144,10 @@ background:#900 !important;
 .price{
 
 font-weight:bold;
+
 font-size:18px;
+
+white-space:nowrap;
 
 }
 
@@ -91,7 +155,9 @@ font-size:18px;
 .total{
 
 font-size:25px;
+
 font-weight:bold;
+
 margin-top:20px;
 
 }
@@ -100,12 +166,63 @@ margin-top:20px;
 .checkout-btn{
 
 background:#111;
+
 color:white;
+
 padding:15px;
+
 width:100%;
+
 border:0;
+
 cursor:pointer;
+
 margin-top:20px;
+
+}
+
+
+@media(max-width:600px){
+
+.cart{
+
+margin:20px;
+
+padding:20px;
+
+}
+
+
+.item{
+
+align-items:flex-start;
+
+}
+
+
+.product-left{
+
+flex-direction:column;
+
+align-items:flex-start;
+
+}
+
+
+.product-image{
+
+width:100px;
+
+height:100px;
+
+}
+
+
+.price{
+
+font-size:16px;
+
+}
 
 }
 
@@ -120,7 +237,9 @@ margin-top:20px;
 <header>
 
 <div class="logo">
+
 EINO STORE
+
 </div>
 
 </header>
@@ -129,6 +248,7 @@ EINO STORE
 
 <div class="cart">
 
+
 <h1>Your Cart</h1>
 
 
@@ -136,40 +256,66 @@ EINO STORE
 
 
 <div class="total" id="total">
+
 Total: 0 EGP
+
 </div>
 
 
 <a href="checkout.html">
 
 <button class="checkout-btn">
+
 Checkout
+
 </button>
 
 </a>
 
 
 </div>
+
+
+
 <script>
+
 
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
+
 let items = document.getElementById("cartItems");
+
 
 let total = 0;
 
 
+
 function displayCart(){
+
 
 items.innerHTML = "";
 
+
 total = 0;
+
+
+
+if(cart.length === 0){
+
+items.innerHTML = "<p>Your cart is empty.</p>";
+
+document.getElementById("total").innerHTML = "Total: 0 EGP";
+
+return;
+
+}
+
 
 
 cart.forEach((product, index) => {
 
 
-let price = parseInt(product.price);
+let price = parseInt(product.price) || 0;
 
 
 let quantity = product.quantity || 1;
@@ -181,52 +327,79 @@ total += price * quantity;
 
 items.innerHTML += `
 
+
 <div class="item">
 
+
+<div class="product-left">
+
+
 <img
-src="${product.image}"
-width="120"
-style="border-radius:10px;margin-right:20px;"
+
+class="product-image"
+
+src="${product.image || 'https://via.placeholder.com/120'}"
+
+alt="${product.name}"
+
+
 >
 
-<div class="info">
-
 
 <div class="info">
+
 
 <b>${product.name}</b>
 
+
 <br>
+
 
 Size: ${product.size || "Not selected"}
 
+
 <br>
+
 
 Color: ${product.color || "Not selected"}
 
-<br><br>
 
 
 <div class="actions">
 
+
 <button onclick="decreaseQuantity(${index})">
+
 -
+
 </button>
 
 
 <span>
+
 ${quantity}
+
 </span>
 
 
 <button onclick="increaseQuantity(${index})">
+
 +
+
 </button>
+
+
+<br>
 
 
 <button class="remove" onclick="removeItem(${index})">
+
 Remove
+
 </button>
+
+
+</div>
 
 
 </div>
@@ -245,6 +418,7 @@ ${price * quantity} EGP
 
 </div>
 
+
 `;
 
 });
@@ -261,6 +435,7 @@ document.getElementById("total").innerHTML =
 
 function increaseQuantity(index){
 
+
 if(!cart[index].quantity){
 
 cart[index].quantity = 1;
@@ -272,6 +447,7 @@ cart[index].quantity++;
 
 
 saveCart();
+
 
 }
 
@@ -334,7 +510,6 @@ displayCart();
 
 
 displayCart();
-
 
 
 </script>
